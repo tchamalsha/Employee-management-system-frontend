@@ -1,6 +1,6 @@
 <template>
   <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-* shadow fixed-top">
   <div class="container">
     <a class="navbar-brand" href="#">
         <!-- <img src="src/assets/logo.png"> -->
@@ -41,7 +41,8 @@ h3,h6{
     text-align: left;
 }
 .navbar{
-    height: 15vh;
+    height: 12vh;
+    position: relative;
 }
 .masthead {
   height: 100vh;
@@ -53,5 +54,27 @@ h3,h6{
 a:active{
     color: black;
     border-bottom: black;
+}
+/* Color of the links BEFORE scroll */
+.navbar-scroll .nav-link,
+.navbar-scroll .navbar-toggler-icon {
+  color: #fff;
+}
+
+/* Color of the links AFTER scroll */
+.navbar-scrolled .nav-link,
+.navbar-scrolled .navbar-toggler-icon {
+  color: #4f4f4f;
+}
+
+/* Color of the navbar AFTER scroll */
+.navbar-scrolled {
+  background-color: rgb(173, 173, 173);
+}
+
+/* An optional height of the navbar AFTER scroll */
+.navbar.navbar-scroll.navbar-scrolled {
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 </style>
