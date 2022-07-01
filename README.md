@@ -1,4 +1,4 @@
-# hello-world
+# Employee Management System Frontend
 
 ## Project setup
 ```
