@@ -17,6 +17,11 @@ const routes = [
     path: '/salaryService',
     name: 'salaryService',
     component: () => import('../views/SalaryServiceView.vue')
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: () => import('../views/Profiles/ProfileForAdmin.vue')
   }
 ]
 
