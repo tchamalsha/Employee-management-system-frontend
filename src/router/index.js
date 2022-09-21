@@ -21,7 +21,17 @@ const routes = [
   {
     path: '/profile',
     name: 'profile',
-    component: () => import('../views/Profiles/ProfileForAdmin.vue')
+    component: () => import('../views/ProfileView.vue')
+  },
+  // {
+  //   path: '/employees',
+  //   name: 'employees',
+  //   component: () => import('../views/EmployeeView.vue')
+  // },
+  {
+    path: '/signin',
+    name: 'signin',
+    component: () => import('../views/SigninView.vue')
   }
 ]
 

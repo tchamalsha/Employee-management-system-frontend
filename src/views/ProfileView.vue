@@ -33,7 +33,7 @@
 <script>
 import NavBar from "@/components/NavbarView.vue"
 export default {
-    name:"Profile",
+    name:"ProfileView",
     components:{
         NavBar
     }
