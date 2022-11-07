@@ -1,8 +1,8 @@
 <template>
     <NavBar/>
   <div class="container-fluid">
-    <form>
-    <div class="row m-5 d-flex align-items-center">
+    <form @submit.prevent="signup">
+    <div class="row m-auto mt-5 d-flex align-items-center">
         <div class="col-md-5 justify-content-center salary-details ">
             <div class="login-main-text">
                 <h2>Application<br> Register Page</h2>
@@ -12,30 +12,30 @@
                
                 <div class="form-group p-2 ">
                     <label class="d-flex justify-content-start">Employee Roll</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">Admin</option>
-                        <option value="2">Employee</option>
+                    <select class="form-select" aria-label="Default select example" v-model="form.role">
+                        <option value="Open this select menu" disabled>Open this select menu</option>
+                        <option>Admin</option>
+                        <option>Employee</option>
                     </select>
                 </div>
                 <div class="form-group p-2">
                     <label class="d-flex justify-content-start" >Position</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">Mechanic</option>
-                        <option value="2">Operator</option>
-                        <option value="3">Helper</option>
-                        <option value="4">Manager</option>
-                        <option value="5">Supervisor</option>
+                    <select class="form-select" aria-label="Default select example" v-model="form.position">
+                        <option value="Open this select menu" disabled>Open this select menu</option>
+                        <option>Mechanic</option>
+                        <option>Operator</option>
+                        <option>Helper</option>
+                        <option>Manager</option>
+                        <option>Supervisor</option>
                     </select>
                 </div>
                 <div class="form-group p-2">
                     <label class="d-flex justify-content-start">Basic Salary</label>
-                    <input type="text" class="form-control" placeholder="LKR">
+                    <input type="text" class="form-control" placeholder="LKR" v-model="form.basicSalary">
                 </div>
                 <div class="form-group p-2">
                     <label class="d-flex justify-content-start">Special Allowance</label>
-                    <input type="text" class="form-control" placeholder="LKR">
+                    <input type="text" class="form-control" placeholder="LKR" v-model="form.allowance">
                 </div>
                 
             </div>
@@ -48,40 +48,40 @@
                
                     <div class="form-group m-3">
                         <label class="d-flex justify-content-start">Full Name</label>
-                        <input type="text" class="form-control" placeholder="full name">
+                        <input type="text" v-model="form.name" class="form-control" placeholder="full name">
                     </div>
                     <div class="form-group m-3">
                         <label class="d-flex justify-content-start">Email</label>
-                        <input type="password" class="form-control" placeholder="email">
+                        <input type="email" v-model="form.email" class="form-control" placeholder="email">
                     </div>
                     <div class="form-group m-3 d-flex">
                         <div class="col-6 m-1">
                             <label class="d-flex justify-content-start">Identity Number</label>
-                        <input type="text" class="form-control" placeholder="id number">
+                        <input type="text" class="form-control" v-model="form.id" placeholder="id number">
                         </div>
                         <div class="col-6 m-1">
                             <label class="d-flex justify-content-start">Mobile Number</label>
-                            <input type="text" class="form-control" placeholder="Mobile number">
+                            <input type="text" class="form-control" v-model="form.mobile" placeholder="Mobile number">
                         </div>
                     </div>
                     <div class="form-group m-3">
                         <label class="d-flex justify-content-start">Address</label>
-                        <input type="password" class="form-control" placeholder="address">
+                        <input type="text" class="form-control" v-model="form.address" placeholder="address">
                     </div>
                 
                     <div class="form-group m-3 d-flex">
                         <div class="col-6 m-1">
                             <label class="d-flex justify-content-start">Password</label>
-                            <input type="password" class="form-control" placeholder="Password">
+                            <input type="password" v-model="form.password" class="form-control" placeholder="Password">
                         </div>
                         <div class="col-6 m-1">
                             <label class="d-flex justify-content-start">Confirm Password</label>
-                            <input type="password" class="form-control" placeholder="Password">
+                            <input type="password" class="form-control" v-model="form.cPassword" placeholder="Password">
                         </div>
                     </div>
                    
                     <div class="row justify-content-center mt-5">
-                        <button type="submit" class="col-4 m-3 btn btn-black">Clear</button>
+                        <button type="clear" class="col-4 m-3 btn btn-black">Clear</button>
                         <button type="submit" class="col-4 m-3 btn btn-black">Submit</button>
                     </div>
                     
@@ -95,8 +95,42 @@
 
 <script>
 import NavBar from "@/components/NavbarView.vue"
+import adminService from "@/services/AdminService";
+import employeeService from "@/services/EmployeeService"
+import userService from "@/services/UserService"
 export default {
     name:"SigninView",
+    data() {
+            return {
+                isError: false,
+                form: {
+                    id:"",
+                    email: "",
+                    name: "",
+                    role: "",
+                    telephone:"",
+                    password: "",
+                    cPassword: "",
+                    address:"",
+                    position:"",
+                    basicSalary:"",
+                    allowance:"0.00",
+
+                }
+            }
+        },
+        methods: {
+            signup(){                
+                if (this.form.role == 'Admin'){
+                    adminService.signup(this.form);
+                }
+                else{
+                    employeeService.signup(this.form);
+                }
+                userService.addPersonalDetails(this.form);
+                
+            }
+        },
     components:{
         NavBar
     }
