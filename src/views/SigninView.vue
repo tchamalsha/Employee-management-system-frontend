@@ -48,16 +48,16 @@
                
                     <div class="form-group m-3">
                         <label class="d-flex justify-content-start">Full Name</label>
-                        <input type="text" v-model="form.name" class="form-control" placeholder="full name">
+                        <input type="text" v-model="form.name" class="form-control" placeholder="Type full name">
                     </div>
                     <div class="form-group m-3">
                         <label class="d-flex justify-content-start">Email</label>
-                        <input type="email" v-model="form.email" class="form-control" placeholder="email">
+                        <input type="email" v-model="form.email" class="form-control" placeholder="Type email">
                     </div>
                     <div class="form-group m-3 d-flex">
                         <div class="col-6 m-1">
                             <label class="d-flex justify-content-start">Identity Number</label>
-                        <input type="text" class="form-control" v-model="form.id" placeholder="id number">
+                        <input type="text" class="form-control" v-model="form.id" placeholder="Id number">
                         </div>
                         <div class="col-6 m-1">
                             <label class="d-flex justify-content-start">Mobile Number</label>
@@ -66,17 +66,17 @@
                     </div>
                     <div class="form-group m-3">
                         <label class="d-flex justify-content-start">Address</label>
-                        <input type="text" class="form-control" v-model="form.address" placeholder="address">
+                        <input type="text" class="form-control" v-model="form.address" placeholder="Address">
                     </div>
                 
                     <div class="form-group m-3 d-flex">
                         <div class="col-6 m-1">
-                            <label class="d-flex justify-content-start">Password</label>
-                            <input type="password" v-model="form.password" class="form-control" placeholder="Password">
+                            <label class="d-flex justify-content-start">Postal Code</label>
+                            <input type="text" v-model="form.postalCode" class="form-control" placeholder="Postal Code">
                         </div>
                         <div class="col-6 m-1">
                             <label class="d-flex justify-content-start">Confirm Password</label>
-                            <input type="password" class="form-control" v-model="form.cPassword" placeholder="Password">
+                            <input type="password" class="form-control" v-model="form.Password" placeholder="Password">
                         </div>
                     </div>
                    
@@ -110,7 +110,7 @@ export default {
                     role: "",
                     telephone:"",
                     password: "",
-                    cPassword: "",
+                    postalCode: "",
                     address:"",
                     position:"",
                     basicSalary:"",

@@ -7,7 +7,7 @@ class UserService{
         return axios.post('signup/personalDetails', {
             id: form.id,
             address: form.address,
-            postal_code: form.postal,
+            postalCode: form.postalCode,
             telephone: form.telephone,
             
         }).then((res) => {
