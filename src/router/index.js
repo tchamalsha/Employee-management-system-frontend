@@ -17,6 +17,31 @@ const routes = [
     path: '/salaryService',
     name: 'salaryService',
     component: () => import('../views/SalaryServiceView.vue')
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: () => import('../views/ProfileView.vue')
+  },
+  // {
+  //   path: '/employees',
+  //   name: 'employees',
+  //   component: () => import('../views/EmployeeView.vue')
+  // },
+  {
+    path: '/signin',
+    name: 'signin',
+    component: () => import('../views/SigninView.vue')
+  },
+  {
+    path: '/success',
+    name: 'success',
+    component: () => import('../views/SuccessView.vue')
+  },
+  {
+    path: '/error',
+    name: 'error',
+    component: () => import('../views/ErrorView.vue')
   }
 ]
 
