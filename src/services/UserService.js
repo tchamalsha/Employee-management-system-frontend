@@ -16,6 +16,20 @@ class UserService{
             throw err
         }) 
     }
+
+    async addSalarylDetails(form) {
+        return axios.post('signup/salaryDetails', {
+            id:form.id,
+            basicSalary:form.basicSalary,
+            otRate:form.otRate,
+            specialAllowance:form.specialAllowance
+            
+        }).then((res) => {
+            return res
+        }).catch((err) => {
+            throw err
+        }) 
+    }
 }
 
 export default new UserService;

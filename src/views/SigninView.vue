@@ -115,12 +115,15 @@ export default {
                     position:"",
                     basicSalary:"",
                     allowance:"0.00",
+                    otRate:""
 
                 }
             }
         },
         methods: {
-            signup(){                
+            signup(){     
+                this.form.otRate = (this.form.basicSalary/200)*1.5;  
+                this.form.otRate.toFixed(2);         
                 if (this.form.role == 'Admin'){
                     adminService.signup(this.form);
                 }
@@ -128,6 +131,8 @@ export default {
                     employeeService.signup(this.form);
                 }
                 userService.addPersonalDetails(this.form);
+                userService.addSalarylDetails(this.form);
+                
                 
             }
         },
