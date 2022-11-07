@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-group p-2">
                     <label class="d-flex justify-content-start">Special Allowance</label>
-                    <input type="text" class="form-control" placeholder="LKR" v-model="form.allowance">
+                    <input type="text" class="form-control" placeholder="LKR" v-model="form.specialAllowance">
                 </div>
                 
             </div>
@@ -61,7 +61,7 @@
                         </div>
                         <div class="col-6 m-1">
                             <label class="d-flex justify-content-start">Mobile Number</label>
-                            <input type="text" class="form-control" v-model="form.mobile" placeholder="Mobile number">
+                            <input type="text" class="form-control" v-model="form.telephone" placeholder="Mobile number">
                         </div>
                     </div>
                     <div class="form-group m-3">
@@ -114,26 +114,52 @@ export default {
                     address:"",
                     position:"",
                     basicSalary:"",
-                    allowance:"0.00",
+                    specialAllowance:"0.00",
                     otRate:""
 
                 }
             }
         },
         methods: {
-            signup(){     
+            async signup(){     
                 this.form.otRate = (this.form.basicSalary/200)*1.5;  
-                this.form.otRate.toFixed(2);         
+                this.form.otRate.toFixed(2);  
+
                 if (this.form.role == 'Admin'){
-                    adminService.signup(this.form);
+                    adminService.signup(this.form).then(res => {
+                    this.isError = false
+                }).catch(err => {
+                    this.isError = true
+                    // todo : if any error
+                });
                 }
                 else{
-                    employeeService.signup(this.form);
+                    employeeService.signup(this.form).then(res => {
+                    this.isError = false
+                }).catch(err => {
+                    this.isError = true
+                    // todo : if any error
+                });
                 }
-                userService.addPersonalDetails(this.form);
-                userService.addSalarylDetails(this.form);
-                
-                
+                userService.addPersonalDetails(this.form).then(res => {
+                    this.isError = false
+                }).catch(err => {
+                    this.isError = true
+                    // todo : if any error
+                });
+                userService.addSalarylDetails(this.form).then(res => {
+                    this.isError = false
+                }).catch(err => {
+                    this.isError = true
+                    // todo : if any error
+                });
+
+                if(this.isError == true){
+                    this.$router.push('/error')
+                }else{
+                    this.$router.push('/success')
+                }
+
             }
         },
     components:{
