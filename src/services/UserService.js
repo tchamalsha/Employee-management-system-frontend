@@ -30,6 +30,16 @@ class UserService{
             throw err
         }) 
     }
+    async login(form){
+        return axios.post('login',{
+            id:form.id,
+            password:form.password
+        }).then((res)=>{
+            return res
+        }).catch ((err)=>{
+            throw err
+        })
+    }
 }
 
 export default new UserService;

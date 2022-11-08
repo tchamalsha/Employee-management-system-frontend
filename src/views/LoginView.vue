@@ -9,7 +9,7 @@
                     <h1>Sign in</h1>
                     <p class="text-gray">Sign in for Learning management system.</p>
                     <div class="mt-4">
-                        <form action="" method="POST" @submit.prevent="signin">
+                        <form action="" method="POST" @submit.prevent="login">
                             <label for="email_field" class="form-label">Identity Number</label>
                             <div class="input-group input-group-sm">
                                 <input type="text" name="id" class="form-control" id="id_feild"  required>
@@ -39,9 +39,31 @@
 </template>
 
 <script>
+import UserService from '@/services/UserService';
+
 
     export default {
-        name:"LoginView"
+        name:"LoginView",
+        data(){
+            return{
+                form:{
+                id:"",
+                password:""
+            }
+            }
+            
+        },
+        methods:{
+            login(){
+                UserService.login(this.form).then((res)=>{
+                    if(res==true){
+                        this.$router.push("/")
+                    }else{
+                        //todo error handling
+                    }
+                })
+            }
+        }
     }
 </script>
 
