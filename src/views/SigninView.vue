@@ -128,29 +128,37 @@ export default {
                 if (this.form.role == 'Admin'){
                     adminService.signup(this.form).then(res => {
                     this.isError = false
+                    throw res
                 }).catch(err => {
                     this.isError = true
+                    throw err
                     // todo : if any error
                 });
                 }
                 else{
                     employeeService.signup(this.form).then(res => {
                     this.isError = false
+                    throw res
                 }).catch(err => {
                     this.isError = true
+                    throw err
                     // todo : if any error
                 });
                 }
                 userService.addPersonalDetails(this.form).then(res => {
                     this.isError = false
+                    throw res
                 }).catch(err => {
                     this.isError = true
+                    throw err
                     // todo : if any error
                 });
                 userService.addSalarylDetails(this.form).then(res => {
                     this.isError = false
+                    throw res
                 }).catch(err => {
                     this.isError = true
+                    throw err
                     // todo : if any error
                 });
 
