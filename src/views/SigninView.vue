@@ -14,8 +14,8 @@
                     <label class="d-flex justify-content-start">Employee Roll</label>
                     <select class="form-select" aria-label="Default select example" v-model="form.role">
                         <option value="Open this select menu" disabled>Open this select menu</option>
-                        <option>Admin</option>
-                        <option>Employee</option>
+                        <option>ADMIN</option>
+                        <option>EMPLOYEE</option>
                     </select>
                 </div>
                 <div class="form-group p-2">
@@ -95,8 +95,7 @@
 
 <script>
 import NavBar from "@/components/NavbarView.vue"
-import adminService from "@/services/AdminService";
-import employeeService from "@/services/EmployeeService"
+import UserService from "@/services/UserService";
 export default {
     name:"SigninView",
     data() {
@@ -124,13 +123,14 @@ export default {
                 this.form.otRate = (this.form.basicSalary/200)*1.5;  
                 this.form.otRate.toFixed(2);  
 
-                if (this.form.role == 'Admin'){
-                     adminService.signup(this.form);
-                }
-                else{
-                    employeeService.signup(this.form);
-                }
-                this.$router.push("/success")
+                UserService.signup(this.form).then((res)=>{
+                    this.$router.push("/success")
+                    console.log(this.form)
+                    console.log(res)
+                }).catch((err)=>{
+                    this.$router.push("/error")
+                    console.log(err)
+                })
 
             }
         },
