@@ -75,8 +75,8 @@
                             <input type="text" v-model="form.postalCode" class="form-control" placeholder="Postal Code">
                         </div>
                         <div class="col-6 m-1">
-                            <label class="d-flex justify-content-start">Confirm Password</label>
-                            <input type="password" class="form-control" v-model="form.Password" placeholder="Password">
+                            <label class="d-flex justify-content-start">Password</label>
+                            <input type="password" class="form-control" v-model="form.password" placeholder="Password">
                         </div>
                     </div>
                    
@@ -97,7 +97,6 @@
 import NavBar from "@/components/NavbarView.vue"
 import adminService from "@/services/AdminService";
 import employeeService from "@/services/EmployeeService"
-import userService from "@/services/UserService"
 export default {
     name:"SigninView",
     data() {
@@ -126,39 +125,12 @@ export default {
                 this.form.otRate.toFixed(2);  
 
                 if (this.form.role == 'Admin'){
-                    adminService.signup(this.form).then(res => {
-                    this.isError = false
-                }).catch(err => {
-                    this.isError = true
-                    // todo : if any error
-                });
+                     adminService.signup(this.form);
                 }
                 else{
-                    employeeService.signup(this.form).then(res => {
-                    this.isError = false
-                }).catch(err => {
-                    this.isError = true
-                    // todo : if any error
-                });
+                    employeeService.signup(this.form);
                 }
-                userService.addPersonalDetails(this.form).then(res => {
-                    this.isError = false
-                }).catch(err => {
-                    this.isError = true
-                    // todo : if any error
-                });
-                userService.addSalarylDetails(this.form).then(res => {
-                    this.isError = false
-                }).catch(err => {
-                    this.isError = true
-                    // todo : if any error
-                });
-
-                if(this.isError == true){
-                    this.$router.push('/error')
-                }else{
-                    this.$router.push('/success')
-                }
+                this.$router.push("/success")
 
             }
         },

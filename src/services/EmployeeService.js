@@ -22,10 +22,21 @@ class EmployeeService{
             password: form.password,
             position:form.position
             
+        }),axios.post('signup/personalDetails',{
+            id: form.id,
+            address: form.address,
+            postalCode: form.postalCode,
+            telephone: form.telephone,
+        }),axios.post('signup/salaryDetails', {
+            id:form.id,
+            basicSalary:form.basicSalary,
+            otRate:form.otRate,
+            specialAllowance:form.specialAllowance
+            
         }).then((res) => {
             return res
         }).catch((err) => {
-            throw err
+            return err
         }) 
     }
 }
